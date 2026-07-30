@@ -1,65 +1,202 @@
-import Image from "next/image";
+'use client';
 
-export default function Home() {
+import dynamic from 'next/dynamic';
+import CardNav, { CardNavItem } from './components/CardNav';
+import CardSwap from './components/CardSwap';
+import FolderCard from './components/FolderCard';
+import PricingSection from './components/PricingSection';
+import ProcesoSection from './components/ProcesoSection';
+import WhyUsSection from './components/WhyUsSection';
+import ContactStepperForm from './components/ContactStepperForm';
+import { FiFileText, FiClock, FiMessageSquare, FiFileMinus, FiLock, FiUsers, FiShield, FiZap } from 'react-icons/fi';
+
+const Ferrofluid = dynamic(() => import('./components/Ferrofluid'), { ssr: false });
+
+const navItems: CardNavItem[] = [
+  {
+    label: 'Servicios',
+    bgColor: '#0F1B1A',
+    textColor: '#fff',
+    links: [
+      { label: 'Portal del cliente', href: '#servicios', ariaLabel: 'Portal del cliente' },
+      { label: 'Gestión documental', href: '#servicios', ariaLabel: 'Gestión documental' }
+    ]
+  },
+  {
+    label: 'Beneficios',
+    bgColor: '#12211F',
+    textColor: '#fff',
+    links: [
+      { label: 'Para despachos', href: '#beneficios', ariaLabel: 'Beneficios para despachos' },
+      { label: 'Para gestorías', href: '#beneficios', ariaLabel: 'Beneficios para gestorías' }
+    ]
+  },
+  {
+    label: 'Contacto',
+    bgColor: '#0A1210',
+    textColor: '#fff',
+    links: [
+      { label: 'Solicitar demo', href: '#contacto', ariaLabel: 'Solicitar demo' },
+      { label: 'Email', href: 'mailto:hola@tudominio.com', ariaLabel: 'Enviar correo' }
+    ]
+  }
+];
+
+export default function LandingPage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+<main className="relative min-h-[100dvh] bg-[#0A0A0A] text-white overflow-x-hidden">
+      {/* Fondo con mesh gradient sutil */}
+      <div
+        className="pointer-events-none fixed inset-0 z-0 opacity-60"
+      />
+
+      <CardNav
+        logo="/logo.svg"
+        logoAlt="Logo"
+        items={navItems}
+        baseColor="rgba(10,14,13,0.75)"
+        menuColor="#fff"
+        buttonBgColor="#10B981"
+        buttonTextColor="#04140F"
+      />
+
+      {/* HERO */}
+ <section className="relative z-10 min-h-[100dvh] px-4 md:px-12">
+        <div className="absolute inset-0 -z-10">
+          <Ferrofluid
+            colors={['#0EA5E9', '#10B981', '#0F172A']}
+            backgroundColor="#0A0A0A"
+            speed={0.35}
+            scale={1.4}
+            turbulence={0.8}
+            fluidity={0.15}
+            rimWidth={0.18}
+            sharpness={3}
+            shimmer={0.8}
+            glow={1.6}
+            flowDirection="up"
+            opacity={0.55}
+            mouseInteraction={true}
+            mouseStrength={0.8}
+            mouseRadius={0.28}
+          />
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+
+        <div className="relative min-h-[100dvh] pt-28 md:pt-0">
+          {/* Pila de carpetas — posicionada libremente sobre toda la sección */}
+          <div
+            className="hidden md:block absolute z-[5]"
+            style={{ right: '10%', top: '80%', transform: 'translateY(-50%)' }}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+            <CardSwap
+              width={440}
+              height={290}
+              cardDistance={70}
+              verticalDistance={60}
+              delay={4000}
+              pauseOnHover
+              skewAmount={4}
+              easing="elastic"
+            >
+              <FolderCard icon={<FiFileText />} title="Documentos" desc="Toda la documentación del expediente en un solo sitio." tabColor="#10B981" />
+              <FolderCard icon={<FiClock />} title="Trámites" desc="Estado del expediente visible en tiempo real." tabColor="#0EA5E9" />
+              <FolderCard icon={<FiMessageSquare />} title="Mensajería" desc="Comunicación directa y con historial, sin emails sueltos." tabColor="#A78BFA" />
+              <FolderCard icon={<FiFileMinus />} title="Facturación" desc="Facturas y presupuestos accesibles desde el portal." tabColor="#F59E0B" />
+            </CardSwap>
+          </div>
+
+          {/* Versión móvil: pila normal, dentro del flujo */}
+          <div className="md:hidden w-full h-[420px] relative mb-10">
+            <CardSwap width={300} height={200} cardDistance={45} verticalDistance={45} delay={4000} pauseOnHover skewAmount={4} easing="elastic">
+              <FolderCard icon={<FiFileText />} title="Documentos" desc="Toda la documentación del expediente en un solo sitio." tabColor="#10B981" />
+              <FolderCard icon={<FiClock />} title="Trámites" desc="Estado del expediente visible en tiempo real." tabColor="#0EA5E9" />
+              <FolderCard icon={<FiMessageSquare />} title="Mensajería" desc="Comunicación directa y con historial, sin emails sueltos." tabColor="#A78BFA" />
+              <FolderCard icon={<FiFileMinus />} title="Facturación" desc="Facturas y presupuestos accesibles desde el portal." tabColor="#F59E0B" />
+            </CardSwap>
+          </div>
+
+          {/* Texto — con su propio z-index para quedar por encima si se solapa */}
+          <div className="relative z-10 w-full md:w-[55%] text-center md:text-left flex flex-col justify-center min-h-[100dvh] md:min-h-0 md:h-[100dvh]">
+            <h1 className="text-[38px] leading-[1.05] md:text-[58px] font-medium tracking-[-0.02em] mb-6">
+              El portal de cliente que tu despacho
+              <span className="text-emerald-400"> merece</span>
+            </h1>
+            <p className="text-white/60 text-[16px] md:text-[18px] max-w-md mx-auto md:mx-0 mb-10">
+              Centraliza documentación, comunicación y trámites con tus clientes en
+              un espacio privado, profesional y con tu marca.
+            </p>
+            <div className="flex items-center justify-center md:justify-start gap-4 flex-wrap">
+              <a
+                href="#contacto"
+                className="group inline-flex items-center gap-3 rounded-full bg-emerald-500 text-[#04140F] pl-6 pr-2 py-2 text-[14px] font-medium transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:scale-[1.03] active:scale-[0.98]"
+              >
+                <span>Solicitar demo</span>
+                <span className="w-8 h-8 rounded-full bg-black/10 flex items-center justify-center transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-1 group-hover:-translate-y-[1px]">
+                  {'\u2197'}
+                </span>
+              </a>
+              <a
+                href="#servicios"
+                className="rounded-full px-6 py-3 text-[14px] font-medium ring-1 ring-white/15 hover:bg-white/5 transition-all duration-500"
+              >
+                Ver funcionalidades
+              </a>
+              <a 
+                href="/demo" 
+                className="rounded-full px-6 py-3 text-[14px] font-medium ring-1 ring-white/15 hover:bg-white/5 transition-all duration-500"
+              >
+                Ver demo interactiva
+              </a>
+            </div>
+          </div>
         </div>
-      </main>
+      </section>
+
+      <ProcesoSection />
+
+      <PricingSection />
+
+      <WhyUsSection />
+
+      <ContactStepperForm />
+
+      <footer className="relative z-10 px-4 pb-12 text-center text-white/30 text-[13px]">
+        © {new Date().getFullYear()} — Portales de cliente para despachos y gestorías
+      </footer>
+    </main>
+  );
+}
+
+function BentoCard({
+  icon,
+  title,
+  desc,
+  className = '',
+  large = false
+}: {
+  icon: React.ReactNode;
+  title: string;
+  desc: string;
+  className?: string;
+  large?: boolean;
+}) {
+  return (
+    <div className={`p-1.5 rounded-[2rem] bg-white/[0.03] ring-1 ring-white/10 ${className}`}>
+      <div
+        className={`h-full rounded-[calc(2rem-0.375rem)] bg-[#0A1210] p-6 md:p-8 flex flex-col gap-4 shadow-[inset_0_1px_1px_rgba(255,255,255,0.06)] transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-1 ${
+          large ? 'justify-end min-h-[280px] md:min-h-[360px]' : 'min-h-[160px]'
+        }`}
+      >
+        <div className="w-10 h-10 rounded-full bg-emerald-500/10 ring-1 ring-emerald-500/20 flex items-center justify-center text-emerald-400 text-[18px]">
+          {icon}
+        </div>
+        <div>
+          <h3 className={`font-medium tracking-[-0.01em] mb-2 ${large ? 'text-[24px] md:text-[28px]' : 'text-[18px]'}`}>
+            {title}
+          </h3>
+          <p className="text-white/55 text-[14px] leading-relaxed">{desc}</p>
+        </div>
+      </div>
     </div>
   );
 }
