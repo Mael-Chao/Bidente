@@ -8,7 +8,7 @@ import PricingSection from './components/PricingSection';
 import ProcesoSection from './components/ProcesoSection';
 import WhyUsSection from './components/WhyUsSection';
 import ContactStepperForm from './components/ContactStepperForm';
-import { FiFileText, FiClock, FiMessageSquare, FiFileMinus, FiLock, FiUsers, FiShield, FiZap } from 'react-icons/fi';
+import { FiFileText, FiClock, FiMessageSquare, FiFileMinus, FiLock, FiUsers, FiShield, FiZap, FiCalendar } from 'react-icons/fi';
 
 const Ferrofluid = dynamic(() => import('./components/Ferrofluid'), { ssr: false });
 
@@ -19,16 +19,17 @@ const navItems: CardNavItem[] = [
     textColor: '#fff',
     links: [
       { label: 'Portal del cliente', href: '#servicios', ariaLabel: 'Portal del cliente' },
-      { label: 'Gestión documental', href: '#servicios', ariaLabel: 'Gestión documental' }
+      { label: 'Gestión documental', href: '#servicios', ariaLabel: 'Gestión documental' },
+      { label: 'Vencimientos y recordatorios', href: '#servicios', ariaLabel: 'Vencimientos y recordatorios' },
     ]
   },
   {
-    label: 'Beneficios',
+    label: 'Por qué nosotros',
     bgColor: '#12211F',
     textColor: '#fff',
     links: [
-      { label: 'Para despachos', href: '#beneficios', ariaLabel: 'Beneficios para despachos' },
-      { label: 'Para gestorías', href: '#beneficios', ariaLabel: 'Beneficios para gestorías' }
+      { label: 'Cómo trabajamos', href: '#beneficios', ariaLabel: 'Cómo trabajamos' },
+      { label: 'Precios', href: '#precios', ariaLabel: 'Precios' },
     ]
   },
   {
@@ -36,7 +37,7 @@ const navItems: CardNavItem[] = [
     bgColor: '#0A1210',
     textColor: '#fff',
     links: [
-      { label: 'Solicitar demo', href: '#contacto', ariaLabel: 'Solicitar demo' },
+      { label: 'Agendar una llamada', href: '#contacto', ariaLabel: 'Agendar una llamada' },
       { label: 'Email', href: 'mailto:hola@tudominio.com', ariaLabel: 'Enviar correo' }
     ]
   }
@@ -65,7 +66,6 @@ export default function LandingPage() {
         <div className="absolute inset-0 -z-10">
           <Ferrofluid
             colors={['#0EA5E9', '#10B981', '#0F172A']}
-            backgroundColor="#0A0A0A"
             speed={0.35}
             scale={1.4}
             turbulence={0.8}
@@ -98,54 +98,42 @@ export default function LandingPage() {
               skewAmount={4}
               easing="elastic"
             >
-              <FolderCard icon={<FiFileText />} title="Documentos" desc="Toda la documentación del expediente en un solo sitio." tabColor="#10B981" />
-              <FolderCard icon={<FiClock />} title="Trámites" desc="Estado del expediente visible en tiempo real." tabColor="#0EA5E9" />
-              <FolderCard icon={<FiMessageSquare />} title="Mensajería" desc="Comunicación directa y con historial, sin emails sueltos." tabColor="#A78BFA" />
-              <FolderCard icon={<FiFileMinus />} title="Facturación" desc="Facturas y presupuestos accesibles desde el portal." tabColor="#F59E0B" />
+              <FolderCard icon={<FiFileText />} title="Documentos" desc="Todo el historial del expediente, con contexto de tu equipo en cada archivo." tabColor="#10B981" />
+              <FolderCard icon={<FiClock />} title="Trámites" desc="Estado de cada gestión, visible para el cliente en tiempo real." tabColor="#0EA5E9" />
+              <FolderCard icon={<FiCalendar />} title="Vencimientos" desc="Plazos fiscales, legales y laborales, con recordatorio automático." tabColor="#F97316" />
+              <FolderCard icon={<FiMessageSquare />} title="Mensajería" desc="Conversación ligada al expediente, sin emails que se pierden." tabColor="#A78BFA" />
+              <FolderCard icon={<FiFileMinus />} title="Facturación" desc="Historial de facturas y su estado, sin tener que preguntar." tabColor="#F59E0B" />
             </CardSwap>
           </div>
 
           {/* Versión móvil: pila normal, dentro del flujo */}
           <div className="md:hidden w-full h-[420px] relative mb-10">
             <CardSwap width={300} height={200} cardDistance={45} verticalDistance={45} delay={4000} pauseOnHover skewAmount={4} easing="elastic">
-              <FolderCard icon={<FiFileText />} title="Documentos" desc="Toda la documentación del expediente en un solo sitio." tabColor="#10B981" />
-              <FolderCard icon={<FiClock />} title="Trámites" desc="Estado del expediente visible en tiempo real." tabColor="#0EA5E9" />
-              <FolderCard icon={<FiMessageSquare />} title="Mensajería" desc="Comunicación directa y con historial, sin emails sueltos." tabColor="#A78BFA" />
-              <FolderCard icon={<FiFileMinus />} title="Facturación" desc="Facturas y presupuestos accesibles desde el portal." tabColor="#F59E0B" />
+              <FolderCard icon={<FiFileText />} title="Documentos" desc="Todo el historial del expediente, con contexto de tu equipo en cada archivo." tabColor="#10B981" />
+              <FolderCard icon={<FiClock />} title="Trámites" desc="Estado de cada gestión, visible para el cliente en tiempo real." tabColor="#0EA5E9" />
+              <FolderCard icon={<FiCalendar />} title="Vencimientos" desc="Plazos fiscales, legales y laborales, con recordatorio automático." tabColor="#F97316" />
+              <FolderCard icon={<FiMessageSquare />} title="Mensajería" desc="Conversación ligada al expediente, sin emails que se pierden." tabColor="#A78BFA" />
+              <FolderCard icon={<FiFileMinus />} title="Facturación" desc="Historial de facturas y su estado, sin tener que preguntar." tabColor="#F59E0B" />
             </CardSwap>
           </div>
 
           {/* Texto — con su propio z-index para quedar por encima si se solapa */}
           <div className="relative z-10 w-full md:w-[55%] text-center md:text-left flex flex-col justify-center min-h-[100dvh] md:min-h-0 md:h-[100dvh]">
             <h1 className="text-[38px] leading-[1.05] md:text-[58px] font-medium tracking-[-0.02em] mb-6">
-              El portal de cliente que tu despacho
-              <span className="text-emerald-400"> merece</span>
+              Que tus clientes vean su expediente,
+              <span className="text-emerald-400"> sin preguntar.</span>
             </h1>
             <p className="text-white/60 text-[16px] md:text-[18px] max-w-md mx-auto md:mx-0 mb-10">
-              Centraliza documentación, comunicación y trámites con tus clientes en
-              un espacio privado, profesional y con tu marca.
+              Documentos, trámites, mensajería y vencimientos de cada cliente,
+              centralizados en un espacio privado, con tu marca.
             </p>
             <div className="flex items-center justify-center md:justify-start gap-4 flex-wrap">
-              <a
-                href="#contacto"
-                className="group inline-flex items-center gap-3 rounded-full bg-emerald-500 text-[#04140F] pl-6 pr-2 py-2 text-[14px] font-medium transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:scale-[1.03] active:scale-[0.98]"
-              >
-                <span>Solicitar demo</span>
-                <span className="w-8 h-8 rounded-full bg-black/10 flex items-center justify-center transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-1 group-hover:-translate-y-[1px]">
-                  {'\u2197'}
-                </span>
+              <a href="/demo" className="group inline-flex items-center gap-3 rounded-full bg-emerald-500 text-[#04140F] pl-6 pr-2 py-2 text-[14px] font-medium ...">
+                <span>Probar la demo interactiva</span>
+                <span className="w-8 h-8 rounded-full bg-black/10 flex items-center justify-center ...">↗</span>
               </a>
-              <a
-                href="#servicios"
-                className="rounded-full px-6 py-3 text-[14px] font-medium ring-1 ring-white/15 hover:bg-white/5 transition-all duration-500"
-              >
-                Ver funcionalidades
-              </a>
-              <a 
-                href="/demo" 
-                className="rounded-full px-6 py-3 text-[14px] font-medium ring-1 ring-white/15 hover:bg-white/5 transition-all duration-500"
-              >
-                Ver demo interactiva
+              <a href="#contacto" className="rounded-full px-6 py-3 text-[14px] font-medium ring-1 ring-white/15 hover:bg-white/5 ...">
+                Agendar una llamada
               </a>
             </div>
           </div>
@@ -160,9 +148,9 @@ export default function LandingPage() {
 
       <ContactStepperForm />
 
-      <footer className="relative z-10 px-4 pb-12 text-center text-white/30 text-[13px]">
-        © {new Date().getFullYear()} — Portales de cliente para despachos y gestorías
-      </footer>
+    <footer className="relative z-10 px-4 pb-12 text-center text-white/30 text-[13px]">
+      © {new Date().getFullYear()} Bidente — Portales de cliente para despachos y gestorías
+    </footer>
     </main>
   );
 }

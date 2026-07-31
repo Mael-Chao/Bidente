@@ -8,11 +8,19 @@ import LineSidebar from './LineSidebar';
 gsap.registerPlugin(ScrollTrigger);
 
 const STEPS = [
-  { label: 'Consulta inicial', desc: 'Analizamos el volumen de clientes, tipos de expediente y flujos actuales de tu despacho o gestoría para definir el alcance del portal.' },
-  { label: 'Diseño del portal', desc: 'Diseñamos la experiencia con tu marca: colores, logo y estructura de secciones adaptadas a cómo trabajas con tus clientes.' },
-  { label: 'Migración de datos', desc: 'Importamos documentación y expedientes existentes de forma segura, sin interrumpir la operativa diaria del despacho.' },
-  { label: 'Puesta en marcha', desc: 'Publicamos el portal en tu propio dominio y damos acceso a tu equipo y a tus primeros clientes con onboarding guiado.' },
-  { label: 'Soporte continuo', desc: 'Mantenimiento, mejoras y soporte directo conmigo. El portal evoluciona contigo, no se queda estático el primer día.' }
+  { label: 'Descubrimiento', desc: 'Mapeamos vuestros trámites y estados actuales.' },
+  { label: 'Diseño', desc: 'Diseñamos la experiencia con tu marca.' },
+  { label: 'Desarrollo', desc: 'Construcción completa del portal.' },
+  { label: 'Entrega y formación', desc: 'Puesta en producción y sesión con tu equipo.' },
+  { label: 'Soporte', desc: 'Corrección de cualquier error, sin coste.' }
+];
+
+const FASES = [
+  { n: '01', titulo: 'Descubrimiento', desc: 'Mapeamos vuestros trámites y estados actuales.', dur: '1 semana' },
+  { n: '02', titulo: 'Diseño', desc: 'Wireframes de las pantallas clave, a tu aprobación.', dur: '1-2 semanas' },
+  { n: '03', titulo: 'Desarrollo', desc: 'Construcción completa del portal.', dur: '3-5 semanas' },
+  { n: '04', titulo: 'Entrega y formación', desc: 'Puesta en producción y sesión con tu equipo.', dur: '1 semana' },
+  { n: '05', titulo: 'Soporte', desc: 'Corrección de cualquier error, sin coste.', dur: '30 días' },
 ];
 
 export default function ProcesoSection() {

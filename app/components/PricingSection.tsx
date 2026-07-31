@@ -30,9 +30,9 @@ const TIERS: Tier[] = [
     recommended: true,
     features: [
       'Todo lo de Esencial',
-      'Roles de usuario',
+      'Equipo: varios usuarios por cliente',
       'Mensajería por expediente',
-      'Notificaciones automáticas',
+      'Vencimientos y recordatorios automáticos',
       'Integración con tu software de gestión'
     ]
   },
@@ -42,9 +42,9 @@ const TIERS: Tier[] = [
     features: [
       'Todo lo de Profesional',
       'Firma electrónica',
+      'Facturación y cobro integrados',
       'Integración API completa',
-      'App móvil ligera',
-      'Analítica de uso'
+      'App móvil ligera'
     ]
   }
 ];
